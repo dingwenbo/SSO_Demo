@@ -89,11 +89,10 @@ public class AuthServlet extends HttpServlet {
 		Cookie[] cookies = request.getCookies();
 		if (cookies == null) {
 			return null;
-		} else {
-			for (Cookie cookie : cookies) {
-				if (StringUtils.equals(cookie.getName(), COOKIE_KEY)) {
-					return cookie.getValue();
-				}
+		}
+		for (Cookie cookie : cookies) {
+			if (StringUtils.equals(cookie.getName(), COOKIE_KEY)) {
+				return cookie.getValue();
 			}
 		}
 		return null;
@@ -146,8 +145,7 @@ class User implements Comparable<User> {
 		}
 		if (StringUtils.defaultString(username).compareTo(StringUtils.defaultString(o.getUsername())) == 0) {
 			return StringUtils.defaultString(password).compareTo(StringUtils.defaultString(o.getPassword()));
-		} else {
-			return StringUtils.defaultString(username).compareTo(StringUtils.defaultString(o.getUsername()));
-		}
+		} 
+		return StringUtils.defaultString(username).compareTo(StringUtils.defaultString(o.getUsername()));
 	}
 }

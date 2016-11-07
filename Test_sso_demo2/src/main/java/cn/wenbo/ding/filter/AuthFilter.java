@@ -74,11 +74,10 @@ public class AuthFilter implements Filter {
 		Cookie[] cookies = request.getCookies();
 		if (cookies == null) {
 			return null;
-		} else {
-			for (Cookie cookie : cookies) {
-				if (StringUtils.equals(cookie.getName(), COOKIE_KEY)) {
-					return cookie.getValue();
-				}
+		}
+		for (Cookie cookie : cookies) {
+			if (StringUtils.equals(cookie.getName(), COOKIE_KEY)) {
+				return cookie.getValue();
 			}
 		}
 		return null;
