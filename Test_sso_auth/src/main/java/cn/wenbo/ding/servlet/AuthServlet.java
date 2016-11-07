@@ -1,6 +1,9 @@
 package cn.wenbo.ding.servlet;
 
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.Properties;
+import java.util.Set;
 import java.util.concurrent.ConcurrentSkipListSet;
 
 import javax.servlet.ServletConfig;
@@ -23,14 +26,27 @@ public class AuthServlet extends HttpServlet {
 	
 	private static String COOKIE_KEY = "authValue";
 	
+	private static final String USERS_CONFIG = "users.properties";
+	
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
 		users.clear();
-		User user = new User("ding", "123456");
-		users.add(user);
-		user = new User("wen", "123456");
-		users.add(user);
+		
+		Properties properties = new Properties();
+		try {
+            properties.load(getClass().getClassLoader().getResourceAsStream(USERS_CONFIG));
+        } catch (IOException e) {
+           //TODO
+            e.printStackTrace();
+        }
+		Iterator<Object> iterator = properties.keySet().iterator();
+		while(iterator.hasNext()) {
+		    String key = String.valueOf(iterator.next());
+		    User user = new User(key, properties.getProperty(key));
+		    users.add(user);
+		    
+		}
 		
 	}
 	
