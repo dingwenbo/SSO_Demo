@@ -3,7 +3,6 @@ package cn.wenbo.ding.servlet;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.Properties;
-import java.util.Set;
 import java.util.concurrent.ConcurrentSkipListSet;
 
 import javax.servlet.ServletConfig;
